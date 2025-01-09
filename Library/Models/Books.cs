@@ -13,8 +13,8 @@ namespace Library.Models
         public string EditionYear { get; set;}
         [Column(TypeName = "varchar(200)")]
         public string Description { get; set;}
-        [Column(TypeName = "int")]
-        public int Rank { get; set;}
-        public string Category { get; set;}
+        [ForeignKey("Category")]
+        public int CategoryId { get; set;}
+        public Category Category { get; set;}
     }
 }

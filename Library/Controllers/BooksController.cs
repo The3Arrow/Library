@@ -1,70 +1,92 @@
 ﻿using Library.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library.Controllers
 {
     public class BooksController : Controller
     {
-        private static IList<Books> books = new List<Books>
- {
-new Books(){Id = 1, Title = "Film1"},
-new Books(){Id = 2, Title = "Film2" },
-new Books(){Id = 3, Title = "Film3" },
- };
+        private readonly BooksDbContext _context;
+        public BooksController(BooksDbContext context)
+        {
+            _context = context;
+        }
+
 
         // GET: BooksController
         public ActionResult Index()
         {
-            return View(books);
+            var Books = _context.Books.Include(f => f.Category).ToList();
+            return View(Books);
         }
 
         // GET: BooksController/Details/5
         public ActionResult Details(int id)
         {
-            return View(books.FirstOrDefault(x => x.Id == id));
+            var book = _context.Books
+                    .Include(b => b.Category)
+                    .FirstOrDefault(b => b.Id == id);
+            return View(book);
+           //return View();
         }
 
         // GET: BooksController/Create
         public ActionResult Create()
         {
+            // Pobierz kategorie z bazy danych
+            var kategorie = _context.Category.ToList();
+            // Utwórz SelectList i przekaż ją do ViewBag
+            ViewBag.CategoryId = new SelectList(kategorie, "Id", "Name");
             return View();
+
         }
 
         // POST: BooksController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create([Bind("Title,EditionYear,Description,CategoryId")] Books book)
         {
             try
             {
+                _context.Books.Add(book);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                var categories = _context.Category.ToList();
+                ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
+                return View(book);
             }
         }
 
         // GET: BooksController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var book = _context.Books
+            .Include(b => b.Category)
+            .FirstOrDefault(b => b.Id == id);
+            return View(book);
         }
 
         // POST: BooksController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Books updatedBook)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var book = _context.Books
+            .Include(b => b.Category)
+            .FirstOrDefault(b => b.Id == id);
+
+            book.Title = updatedBook.Title;
+            book.EditionYear = updatedBook.EditionYear;
+            book.Description = updatedBook.Description;
+
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: BooksController/Delete/5
