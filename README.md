@@ -60,7 +60,7 @@ Update-Database
 
 1. Uruchom Microsoft SQL Server.
 2. Otwórz projekt za pomocą Visual Studio i uruchom aplikację (F5).
-
+---
 ## 5. Opis działania aplikacji
 
 ### 5.1 Funkcjonalność
@@ -77,9 +77,13 @@ Update-Database
 
 ### 5.2 Obsługa aplikacji
 
-Strona główna przedstawia listę książek, którą widzi każdy użytkownik.
+- Strona główna przedstawia listę książek, którą widzi każdy użytkownik.
 
-Aby przejść do widoku administratora, należy przejść pod adres: [https://localhost:7265/Books/Index](https://localhost:7265/Books/Index).
+- Aby przejść do widoku administratora, należy przejść pod adres: [https://localhost:7265/Books/Index](https://localhost:7265/Books/Index).
 
-W tym miejscu możemy edytować lub dodać książkę.
+- W tym miejscu możemy edytować lub dodać książki.
+- Po przejściu do zakładki Categories możemy dodawać i edytować książki.
+- W zakładce Clients możemy dodawać i edytować klientów.
+- W zakładce Copies możemy dodawać, edytować i usuwać kopie książki z bazy.
+- W widoku edycji kopii możemy wypożyczyć książkę odznaczając pole IsAvailable i przypisując klienta do danej kopii książki
 
