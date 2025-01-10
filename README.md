@@ -85,5 +85,5 @@ Update-Database
 - Po przejściu do zakładki Categories możemy dodawać i edytować książki.
 - W zakładce Clients możemy dodawać i edytować klientów.
 - W zakładce Copies możemy dodawać, edytować i usuwać kopie książki z bazy.
-- W widoku edycji kopii możemy wypożyczyć książkę odznaczając pole IsAvailable i przypisując klienta do danej kopii książki
+- W widoku edycji kopii możemy wypożyczyć książkę odznaczając pole IsAvailable i przypisując klienta do danej kopii książki.
 
