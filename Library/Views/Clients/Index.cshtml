@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Library.Models.Clients>
+
+@{
+    ViewData["Title"] = "Clients";
+}
+
+<h1>Clients</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+    <a asp-area="" asp-controller="Copies" asp-action="Index">Copies</a>
+    <a asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id=item.ClientId})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

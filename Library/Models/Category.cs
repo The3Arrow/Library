@@ -8,9 +8,8 @@ namespace Library.Models
         [Key]
         public int Id { get; set; }
         [Column(TypeName = "varchar(50)")]
+        [Required]
         public string Name { get; set; }
-        // Relacja z tabelą Film
-        public ICollection<Books> Books { get; set; }
 
     }
 }

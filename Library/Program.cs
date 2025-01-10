@@ -33,7 +33,7 @@ namespace Library
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Books}/{action=Index}/{id?}");
+                pattern: "{controller=Books}/{action=Books}/{id?}");
 
             app.Run();
         }

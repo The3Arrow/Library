@@ -8,6 +8,7 @@ namespace Library.Models
         public DbSet<Books> Books { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Copies> Copies { get; set; }
+        public DbSet<Clients> Clients { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -17,13 +18,18 @@ namespace Library.Models
             new Category { Id = 2, Name = "Fairy tale" },
             new Category { Id = 3, Name = "Ballad" }
             );
+            modelBuilder.Entity<Clients>().HasData(
+            new Clients { ClientId = 1, FirstName = "Free", Surname="Free" },
+            new Clients { ClientId = 2, FirstName = "John", Surname = "Smith" }
+            );
+
             modelBuilder.Entity<Copies>().HasData(
-            new Copies { CopyId = 1, BookId = 1, IsAvailable = true },
-            new Copies { CopyId = 2, BookId = 1, IsAvailable = true },
-            new Copies { CopyId = 3, BookId = 2, IsAvailable = true },
-            new Copies { CopyId = 4, BookId = 3, IsAvailable = true },
-            new Copies { CopyId = 5, BookId = 4, IsAvailable = true },
-            new Copies { CopyId = 6, BookId = 5, IsAvailable = true }
+            new Copies { CopyId = 1, BookId = 1, IsAvailable = true, ClientId = 1 },
+            new Copies { CopyId = 2, BookId = 1, IsAvailable = true, ClientId = 1 },
+            new Copies { CopyId = 3, BookId = 2, IsAvailable = true, ClientId = 1 },
+            new Copies { CopyId = 4, BookId = 3, IsAvailable = true, ClientId = 1 },
+            new Copies { CopyId = 5, BookId = 4, IsAvailable = true , ClientId = 1 },
+            new Copies { CopyId = 6, BookId = 5, IsAvailable = true , ClientId = 1 }
             );
             // Seed dla filmów
             modelBuilder.Entity<Books>().HasData(

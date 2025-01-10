@@ -17,7 +17,7 @@ namespace Library.Controllers
         // GET: CopiesController
         public ActionResult Index()
         {
-            var Copies = _context.Copies.OrderBy(c => c.BookId).ToList();
+            var Copies = _context.Copies.OrderBy(c => c.BookId).Include(C => C.Client).Include(b => b.Book).ToList();
             return View(Copies);
         }
 
@@ -46,6 +46,7 @@ namespace Library.Controllers
                 Copies copy = new Copies();
                 copy.BookId = updatedCopy.BookId;
                 copy.IsAvailable = true;
+                copy.ClientId = 1;
                 _context.Copies.Add(copy);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -64,6 +65,12 @@ namespace Library.Controllers
         {
             var copy = _context.Copies
             .FirstOrDefault(b => b.CopyId == id);
+
+            var books = _context.Books.ToList();
+            ViewBag.BookId = new SelectList(books, "Id", "Title");
+            var clients = _context.Clients.ToList();
+            ViewBag.ClientId = new SelectList(clients, "ClientId", "FirstName");
+
             return View(copy);
         }
 
@@ -72,11 +79,22 @@ namespace Library.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Copies updatedCopy)
         {
+
+
+            var books = _context.Books.ToList();
+            ViewBag.BookId = new SelectList(books, "Id", "Title");
+            var clients = _context.Clients.ToList();
+            ViewBag.ClientId = new SelectList(clients, "ClientId", "FirstName");
+
             var copy = _context.Copies
             .FirstOrDefault(b => b.CopyId == id);
 
             copy.BookId = updatedCopy.BookId;
             copy.IsAvailable = updatedCopy.IsAvailable;
+            if(!updatedCopy.IsAvailable)
+                copy.ClientId = updatedCopy.ClientId;
+            else
+                copy.ClientId = 1;
 
 
             _context.SaveChanges();

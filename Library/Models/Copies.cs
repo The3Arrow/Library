@@ -9,6 +9,12 @@ namespace Library.Models
         [ForeignKey("Books")] [Required] public int BookId { get; set; }
         public Books Book { get; set; }
         [Column(TypeName = "BIT")]
-        public bool IsAvailable { get; set; } = true;
+        public bool IsAvailable { get; set; }
+        [Required]
+        [ForeignKey("Clients")]
+        public int ClientId { get; set; }
+        public Clients Client { get; set; }
+
+        
     }
 }
