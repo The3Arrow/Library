@@ -79,7 +79,7 @@ Update-Database
 
 - Strona główna przedstawia listę książek, którą widzi każdy użytkownik.
 
-- Aby przejść do widoku administratora, należy przejść pod adres: [https://localhost:7265/Books/Index](https://localhost:7265/Books/Index).
+- Aby wyswietlić widok administratora, należy przejść pod adres: [https://localhost:7265/Books/Index](https://localhost:7265/Books/Index).
 
 - W tym miejscu możemy edytować lub dodać książki.
 - Po przejściu do zakładki Categories możemy dodawać i edytować książki.
