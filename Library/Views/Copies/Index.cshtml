@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Library.Models.Copies>
+
+@{
+    ViewData["Title"] = "Copies";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CopyId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CopyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CopyId}) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CopyId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

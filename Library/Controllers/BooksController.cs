@@ -13,6 +13,10 @@ namespace Library.Controllers
         {
             _context = context;
         }
+        public ActionResult BooksList()
+        {
+            return View("Index1");
+        }
 
 
         // GET: BooksController
