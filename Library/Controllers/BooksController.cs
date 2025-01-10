@@ -13,11 +13,11 @@ namespace Library.Controllers
         {
             _context = context;
         }
-        public ActionResult BooksList()
+        public ActionResult Books()
         {
-            return View("Index1");
+            var Books = _context.Books.Include(f => f.Category).ToList();
+            return View(Books);
         }
-
 
         // GET: BooksController
         public ActionResult Index()
@@ -34,6 +34,15 @@ namespace Library.Controllers
                     .FirstOrDefault(b => b.Id == id);
             return View(book);
            //return View();
+        }
+
+        public ActionResult DetailsBooks(int id)
+        {
+            var book = _context.Books
+                    .Include(b => b.Category)
+                    .FirstOrDefault(b => b.Id == id);
+            return View(book);
+            //return View();
         }
 
         // GET: BooksController/Create

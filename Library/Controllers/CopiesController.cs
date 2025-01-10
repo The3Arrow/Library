@@ -17,7 +17,7 @@ namespace Library.Controllers
         // GET: CopiesController
         public ActionResult Index()
         {
-            var Copies = _context.Copies.ToList();
+            var Copies = _context.Copies.OrderBy(c => c.BookId).ToList();
             return View(Copies);
         }
 

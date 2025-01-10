@@ -1,26 +1,21 @@
 ﻿@model IEnumerable<Library.Models.Books>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Books";
 }
 
-<h1>Index</h1>
+<h1>Books</h1>
 
 <p>
     <a asp-action="Create">Create Book</a>
     <a asp-area="" asp-controller="Copies" asp-action="Index">Copies</a>
+    <a asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EditionYear)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Category)
@@ -32,13 +27,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EditionYear)
             </td>
             <td>
                 @item.Category?.Name
