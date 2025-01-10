@@ -41,7 +41,45 @@ Poniżej znajduje się uproszczony diagram relacji baz danych:
 ### 4.1. Łańcuch połączenia z bazą danych
 
 Edytuj plik `appsettings.json` w katalogu głównym projektu. Zaktualizuj sekcję `ConnectionStrings`:
-```json
+```json:
 "ConnectionStrings": { 
   "DevConnection": "Server=YOUR_SERVER_NAME;Database=Library;Trusted_Connection=True;TrustServerCertificate=True;" 
 }
+```
+- **YOUR_SERVER_NAME**: Nazwa serwera SQL (np. localhost lub DESKTOP-XXXX\SQLEXPRESS).
+
+### 4.2. Dodaj migracje i zaktualizuj bazę danych
+
+W konsoli menadżera pakietów wpisz komendy:
+
+```bash
+Add-Migration Initial
+Update-Database
+```
+### 4.3 Uruchom aplikację
+
+1. Uruchom Microsoft SQL Server.
+2. Otwórz projekt za pomocą Visual Studio i uruchom aplikację (F5).
+
+## 5. Opis działania aplikacji
+
+### 5.1 Funkcjonalność
+
+**Użytkownik:**
+- Przeglądanie książek.
+
+**Administrator:**
+- Edycja i dodawanie książek.
+- Edycja i dodawanie kategorii.
+- Edycja i dodawanie kopii książek.
+- Edycja i dodawanie klientów.
+- Przypisywanie wypożyczonej książki do użytkownika oraz obsługa zwrotów.
+
+### 5.2 Obsługa aplikacji
+
+Strona główna przedstawia listę książek, którą widzi każdy użytkownik.
+
+Aby przejść do widoku administratora, należy przejść pod adres: [https://localhost:7265/Books/Index](https://localhost:7265/Books/Index).
+
+W tym miejscu możemy edytować lub dodać książkę.
+
